@@ -2,23 +2,32 @@ package org.fasttrackit.technicalinterviewtest.transfer.question;
 
 public class UpdateQuestionGivenAnswerRequest {
 
-    private long id;
-    private int givenAnswer;
+    private Long id;
+    private Integer givenAnswer;
 
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getGivenAnswer() {
+    public Integer getGivenAnswer() {
         return givenAnswer;
     }
 
-    public void setGivenAnswer(int givenAnswer) {
+    public void setGivenAnswer(Integer givenAnswer) {
         this.givenAnswer = givenAnswer;
     }
 
+    @Override
+    public String toString() {
+        return "UpdateQuestionGivenAnswerRequest{" +
+                "id=" + id +
+                ", givenAnswer=" + givenAnswer +
+                '}';
+    }
 }
+

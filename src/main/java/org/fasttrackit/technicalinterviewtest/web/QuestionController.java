@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/questions")
@@ -47,9 +50,15 @@ public class QuestionController {
     }
 
     @PutMapping
-    public ResponseEntity updateQuestionGivenAnswer(long id, @RequestBody  UpdateQuestionGivenAnswerRequest request) throws ResourceNotFoundException {
-        questionService.updateQuestionGivenAnswer(id,request);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    public ResponseEntity updateQuestionGivenAnswer(@RequestBody  UpdateQuestionGivenAnswerRequest request) throws ResourceNotFoundException {
+        System.out.println("updateQuestionGivenAnswer:" + request.toString());
+        questionService.updateQuestionGivenAnswer(request.getId(),request);
+
+        Question question = questionService.getQuestion(request.getId());
+        Boolean success  = (question.getCorrectAnswer() == request.getGivenAnswer());
+        String successJSON = "{\"success\": " + success.toString() + " , \"id\": " + request.getId() + ", \"answer\":" + request.getGivenAnswer() + "}";
+
+        return new ResponseEntity<>(successJSON, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

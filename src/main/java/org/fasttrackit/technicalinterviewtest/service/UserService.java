@@ -37,6 +37,9 @@ public class UserService {
     public User createUser(CreateUserRequest request) {
         LOGGER.info("Creating user {}", request);
         User user = objectMapper.convertValue(request, User.class);
+
+        user.setResult(getResult());
+
         return userRepository.save(user);
     }
 
@@ -49,7 +52,7 @@ public class UserService {
     public User updateUser(long id, UpdateUserRequest request) throws ResourceNotFoundException {
         LOGGER.info("Updating user {}, {}", id, request);
         User user = getUser(id);
-        user.setResult(getResult(id));
+        user.setResult(getResult());
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
@@ -76,7 +79,7 @@ public class UserService {
         LOGGER.info("Deleted user {}", id);
     }
 
-    public int getResult(long id){
+    public int getResult(){
 
         int result = 0;
         List<Question> questionList = new ArrayList();
