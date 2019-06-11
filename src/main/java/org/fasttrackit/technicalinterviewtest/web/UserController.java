@@ -42,10 +42,6 @@ public class UserController {
         userService.updateUser(id,request);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-//    @PutMapping("/{id}")
-//    public ResponseEntity updateUserResult(@PathVariable("id") long id, @RequestBody @Valid UpdateUserResultRequest request) throws ResourceNotFoundException {
-//        userService.updateUserResult(id,request);
-//        return new ResponseEntity(HttpStatus.NO_CONTENT);
-//    }
+
 }
 

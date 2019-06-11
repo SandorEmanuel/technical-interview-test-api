@@ -8,10 +8,8 @@ import org.fasttrackit.technicalinterviewtest.persistance.QuestionRepository;
 import org.fasttrackit.technicalinterviewtest.persistance.UserRepository;
 import org.fasttrackit.technicalinterviewtest.transfer.user.CreateUserRequest;
 import org.fasttrackit.technicalinterviewtest.transfer.user.UpdateUserRequest;
-import org.fasttrackit.technicalinterviewtest.transfer.user.UpdateUserResultRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,21 +54,10 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-//        BeanUtils.copyProperties(request, user);
+
 
         return userRepository.save(user);
     }
-//    public User updateUserResult(long id, UpdateUserResultRequest request) throws ResourceNotFoundException {
-//        LOGGER.info("Updating user {}, {}", id, request);
-//        User user = getUser(id);
-//
-//        user.setResult(getResult(id));
-//        user.setEmail(user.getEmail());
-//        user.setFirstName(user.getFirstName());
-//        user.setLastName(user.getLastName());
-//
-//        return userRepository.save(user);
-//    }
 
 
     public void deleteUser(long id) {
@@ -79,7 +66,7 @@ public class UserService {
         LOGGER.info("Deleted user {}", id);
     }
 
-    public int getResult(){
+    private int getResult(){
 
         int result = 0;
         List<Question> questionList = new ArrayList();
